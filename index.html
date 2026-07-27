@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Clark Enao — Customer Support & Operations Specialist</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #0d0d0f;                  /* Rich Deep Dark Background */
+            --card-bg: rgba(24, 24, 27, 0.85); /* Glassmorphic Card Fill */
+            --border: rgba(255, 255, 255, 0.12); /* Glass Border */
+            --border-hover: rgba(255, 255, 255, 0.3); 
+            --accent: #3b82f6;              /* Professional Accent Blue */
+            --accent-glow: rgba(59, 130, 246, 0.25);
+            --fg: #fafafa;                  /* Primary Text */
+            --muted: #a1a1aa;               /* Secondary Text */
+            --chip-bg: rgba(39, 39, 42, 0.8);
+            --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            padding: 0 20px 80px 20px;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Dynamic Background Slideshow */
+        .bg-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 2s ease-in-out, transform 6s ease-out;
+        }
+
+        .bg-slide.active {
+            opacity: 0.25;
+            transform: scale(1);
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 20%, rgba(13, 13, 15, 0.6) 0%, rgba(13, 13, 15, 0.95) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .wrapper {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Bar */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13, 13, 15, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--fg);
+        }
+
+        .logo-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(39, 39, 42, 0.9) 0%, rgba(24, 24, 27, 0.9) 100%);
+            border: 1px solid var(--border-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            color: var(--fg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .brand-logo:hover .logo-badge {
+            border-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        .brand-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--muted);
+        }
+
+        /* Header Grid */
+        header {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            padding: 6px 14px;
+            border-radius: 20px;
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            margin-bottom: 20px;
+            width: fit-content;
+            backdrop-filter: blur(8px);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #10b981;
+            box-shadow: 0 0 8px #10b981;
+        }
+
+        /* Category Kicker above Headline */
+        .category-kicker {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .hero-headline {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: var(--fg);
+            margin-bottom: 16px;
+        }
+
+        .hero-sub {
+            color: var(--muted);
+            font-size: 1.02rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        /* Bottom Highlights Bar */
+        .hero-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 28px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+
+        .stat-num {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--fg);
+            line-height: 1.35;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: rgba(24, 24, 27, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-img-container {
+            width: 100%;
+            height: 270px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            padding: 4px 6px;
+        }
+
+        .profile-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--fg);
+            margin-bottom: 2px;
+        }
+
+        .profile-role {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .meta-item {
+            font-size: 0.8rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meta-item i {
+            width: 14px;
+            color: var(--fg);
+        }
+
+        /* Action CTA Buttons */
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            color: var(--fg);
+        }
+
+        .btn:hover {
+            border-color: var(--border-hover);
+            background: rgba(39, 39, 42, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--fg);
+            color: var(--bg);
+            border-color: var(--fg);
+        }
+
+        .btn-primary:hover {
+            background: #ffffff;
+            color: var(--bg);
+            box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Categories Navigation Grid */
+        .sections-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .category-box {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .category-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: rgba(34, 34, 38, 0.95);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .category-box-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--fg);
+        }
+
+        .section-subtitle {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .category-box .arrow-icon {
+            font-size: 0.85rem;
+            color: var(--muted);
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .category-box:hover .arrow-icon {
+            color: var(--fg);
+            transform: translateX(4px);
+        }
+
+        /* Bottom Professional Links Section */
+        .external-links-section {
+            background: rgba(24, 24, 27, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .external-links-title {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(39, 39, 42, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .link-card:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.12);
+            box-shadow: 0 0 16px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .link-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .link-icon {
+            font-size: 1.2rem;
+            color: var(--fg);
+            width: 24px;
+            text-align: center;
+        }
+
+        .link-card:hover .link-icon {
+            color: var(--accent);
+        }
+
+        .link-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--fg);
+            letter-spacing: -0.01em;
+        }
+
+        .link-card:hover .link-name {
+            color: var(--accent);
+        }
+
+        .link-arrow {
+            font-size: 0.85rem;
+            color: var(--muted);
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .link-card:hover .link-arrow {
+            color: var(--fg);
+            transform: translate(2px, -2px);
+        }
+
+        /* Modal Overlay & Card Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease-in-out;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: rgba(20, 20, 23, 0.96);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-hover);
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95) translateY(10px);
+            transition: transform 0.25s ease-in-out;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--fg);
+            font-family: var(--font-mono);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+
+        .modal-close:hover {
+            color: var(--fg);
+        }
+
+        /* Filter Controls Bar */
+        .filters-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(39, 39, 42, 0.5);
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            font-weight: 500;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            color: var(--fg);
+            border-color: var(--border-hover);
+            background: rgba(63, 63, 70, 0.7);
+            transform: translateY(-1px);
+        }
+
+        .filter-btn.active {
+            color: var(--fg);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .filter-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+            font-size: 0.7rem;
+            border-radius: 12px;
+            padding: 2px 8px;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active .filter-count {
+            background: var(--fg);
+            color: var(--bg);
+            font-weight: 700;
+        }
+
+        /* Experience Accordion */
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-bg);
+            transition: all 0.25s ease-in-out;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .accordion-item.hidden {
+            display: none;
+            opacity: 0;
+            transform: scale(0.98);
+        }
+
+        .accordion-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .accordion-header {
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .job-role {
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: var(--fg);
+        }
+
+        .job-company {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .job-period {
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+            color: var(--muted);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s cubic-bezier(0, 1, 0, 1), padding 0.25s ease;
+            background: rgba(15, 15, 18, 0.95);
+            padding: 0 18px;
+            font-size: 0.88rem;
+        }
+
+        .accordion-item.open .accordion-content {
+            padding: 16px 18px 20px 18px;
+            max-height: 500px;
+            border-top: 1px solid var(--border);
+        }
+
+        .accordion-content ul {
+            padding-left: 18px;
+            color: #d4d4d8;
+        }
+
+        .accordion-content li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .toggle-icon {
+            font-size: 0.75rem;
+            color: var(--muted);
+            transition: transform 0.2s;
+            margin-left: 14px;
+        }
+
+        .accordion-item.open .toggle-icon {
+            transform: rotate(180deg);
+            color: var(--fg);
+        }
+
+        /* Bio & Skill Chips */
+        .bio-text {
+            font-size: 0.98rem;
+            color: #d4d4d8;
+            line-height: 1.7;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-chip {
+            font-size: 0.82rem;
+            font-family: var(--font-mono);
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--chip-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .skill-chip:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .edu-card {
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            padding: 18px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .edu-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--fg);
+        }
+
+        .edu-loc {
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        /* Toast Feedback */
+        #toast {
+            visibility: hidden;
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: var(--fg);
+            color: var(--bg);
+            font-size: 0.82rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.2s, visibility 0.2s;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            z-index: 2000;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                grid-template-columns: 1fr;
+            }
+            .profile-card {
+                order: -1;
+            }
+            .sections-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .accordion-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .toggle-icon { align-self: flex-end; margin-top: -16px; }
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Background -->
+    <div class="bg-slideshow">
+        <div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1920&auto=format&fit=crop');"></div>
+        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1920&auto=format&fit=crop');"></div>
+        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop');"></div>
+    </div>
+    <div class="bg-overlay"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <div class="logo-badge">CCE</div>
+                <span class="brand-name">Christian Clark Enao</span>
+            </a>
+            <div class="status-badge" style="margin-bottom: 0;">
+                <span class="status-dot"></span> Available for Hire
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <header>
+            <div class="header-left">
+                <!-- Specialization Label placed above the Main Headline -->
+                <div class="category-kicker">
+                    Customer Support / E-commerce / Operations / Administrative Support
+                </div>
+
+                <h1 class="hero-headline">Driving operations & seamless customer support.</h1>
+                <p class="hero-sub">Specialized in technical troubleshooting, property management, scheduling, and high-volume operations for fast-growing global teams.</p>
+                
+                <!-- Bottom Highlights Bar -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">Phone · Email · Chat</span>
+                        <span class="stat-label">US · UK · AU support</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">Remote & night-shift ready</span>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="copyEmail()">
+                        <i class="fa-regular fa-envelope"></i> Email Me
+                    </button>
+                    <a href="path/to/Christian_Clark_Enao_Resume.pdf" download="Christian_Clark_Enao_Resume.pdf" class="btn">
+                        <i class="fa-solid fa-download"></i> Get Resume
+                    </a>
+                    <a href="https://wa.me/639072773534" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-img-container">
+                    <img src="profile.png" alt="Christian Clark Enao" class="profile-img">
+                </div>
+                <div class="profile-info">
+                    <h2 class="profile-name">Christian Clark Enao</h2>
+                    <div class="profile-role">Customer Support & Operations Specialist</div>
+                    <div class="profile-meta">
+                        <div class="meta-item">
+                            <i class="fa-solid fa-location-dot"></i> Davao City, Philippines
+                        </div>
+                        <div class="meta-item">
+                            <i class="fa-regular fa-envelope"></i> clrkenao@gmail.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Category Hub -->
+        <div class="sections-wrapper">
+            <div class="category-box" onclick="openCategoryModal('aboutModal')">
+                <div class="category-box-info">
+                    <span class="section-title">ABOUT</span>
+                    <span class="section-subtitle">Read background & overview</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="category-box" onclick="openCategoryModal('skillsModal')">
+                <div class="category-box-info">
+                    <span class="section-title">CAPABILITIES</span>
+                    <span class="section-subtitle">Explore skill tag inventory</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="category-box" onclick="openCategoryModal('experienceModal')">
+                <div class="category-box-info">
+                    <span class="section-title">EXPERIENCE</span>
+                    <span class="section-subtitle">View detailed work history</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="category-box" onclick="openCategoryModal('educationModal')">
+                <div class="category-box-info">
+                    <span class="section-title">EDUCATION</span>
+                    <span class="section-subtitle">View academic background</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </div>
+        </div>
+
+        <!-- External Profiles Section at the Bottom -->
+        <div class="external-links-section">
+            <div class="external-links-title">Professional Links & Profiles</div>
+            <div class="links-grid">
+                <a href="https://v2.onlinejobs.ph/jobseekers/info/1253833" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-info">
+                        <i class="fa-solid fa-briefcase link-icon"></i>
+                        <span class="link-name">OnlineJobs</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/christian-clark-enao-1b3943250/" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-info">
+                        <i class="fa-brands fa-linkedin-in link-icon"></i>
+                        <span class="link-name">LinkedIn</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+                </a>
+
+                <a href="https://www.upwork.com/freelancers/~01c1105d25a961dda6" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-info">
+                        <i class="fa-brands fa-upwork link-icon"></i>
+                        <span class="link-name">Upwork</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE MODAL -->
+    <div id="experienceModal" class="modal-overlay" onclick="closeModal(this)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title">EXPERIENCE</span>
+                <button class="modal-close" onclick="closeModal(this.closest('.modal-overlay'))">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="filters-container">
+                    <button class="filter-btn active" onclick="filterExp('all', this)">
+                        <span>All</span> <span class="filter-count">8</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterExp('support', this)">
+                        <span>Support & Moderation</span> <span class="filter-count">5</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterExp('property', this)">
+                        <span>Property & Real Estate</span> <span class="filter-count">3</span>
+                    </button>
+                </div>
+
+                <div class="accordion">
+                    <!-- Role 1 -->
+                    <div class="accordion-item open" data-cat="support">
+                        <div class="accordion-header" onclick="toggleAcc(this)">
+                            <div>
+                                <div class="job-role">Client Support Specialist / Scheduler</div>
+                                <div class="job-company">GALE Healthcare / NurseStaffing</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="job-period">Nov 2024 – Jul 2026</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Coordinated healthcare staffing schedules and resolved client scheduling conflicts.</li>
+                                <li>Maintained precise documentation and shift records across CRM systems.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 2 -->
+                    <div class="accordion-item" data-cat="property">
+                        <div class="accordion-header" onclick="toggleAcc(this)">
+                            <div>
+                                <div class="job-role">Property Management / Assistant Finance Manager</div>
+                                <div class="job-company">Haven Rentals</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="job-period">Nov 2023 – Nov 2024</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Managed tenant communications, payment tracking, maintenance coordination, and administrative files.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 3 -->
+                    <div class="accordion-item" data-cat="property">
+                        <div class="accordion-header" onclick="toggleAcc(this)">
+                            <div>
+                                <div class="job-role">Property Manager / Retention Specialist</div>
+                                <div class="job-company">Speedhome Rentals</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="job-period">Sep 2023 – Mar 2024</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Supported tenant lifecycle management to reduce churn and increase customer satisfaction.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 4 -->
+                    <div class="accordion-item" data-cat="property">
+                        <div class="accordion-header" onclick="toggleAcc(this)">
+                            <div>
+                                <div class="job-role">Data Entry / Lead Caller</div>
+                                <div class="job-company">The Entrepreneur's Secret (Real Estate)</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="job-period">Jun 2023 – Dec 2023</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Contacted prospective real estate leads to qualify buyers and sellers.</li>
+                                <li>Updated CRM records, property details, and contact databases with accurate real estate data.</li>
+                                <li>Supported acquisition and sales workflows through diligent outbound outreach.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 5 -->
+                    <div class="accordion-item" data-cat="support">
+                        <div class="accordion-header" onclick="toggleAcc(this)">
+                            <div>
+                                <div class="job-role">Moving Survey & Customer Support Specialist</div>
+                                <div class="job-company">P4P Marketing</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="job-period">Jan 2023 – Jun 2023</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Conducted 300–500 daily outbound calls to warm leads.</li>
+                                <li>Executed virtual surveys calculating cubic volume, weight estimates, and box inventory.</li>
+                                <li>Coordinated with logistics brokers and provided drivers with complete instructions.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 6 -->
+                    <div class="accordion-item" data-cat="support">
+                        <div class="accordion-header" onclick="toggleAcc(this)">
+                            <div>
+                                <div class="job-role">Content Moderator</div>
+                                <div class="job-company">Concentrix</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="job-period">Jun 2021 – Oct 2022</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Reviewed user-generated content and enforced platform trust & safety guidelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 7 -->
+                    <div class="accordion-item" data-cat="support">
+                        <div class="accordion-header" onclick="toggleAcc(this)">
+                            <div>
+                                <div class="job-role">Technical Support Representative</div>
+                                <div class="job-company">Teleperformance</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="job-period">Feb 2021 – Jun 2021</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Troubleshot end-user technical issues and documented step-by-step resolution logs.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 8 -->
+                    <div class="accordion-item" data-cat="support">
+                        <div class="accordion-header" onclick="toggleAcc(this)">
+                            <div>
+                                <div class="job-role">ESL Teacher & Customer Representative Roles</div>
+                                <div class="job-company">51Talk, Sutherland, Awesome OS, iQor</div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="job-period">2016 – 2020</span>
+                                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Delivered online English instruction to global students.</li>
+                                <li>Handled high-volume inbound phone, email, and sales support across various campaigns.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT MODAL -->
+    <div id="aboutModal" class="modal-overlay" onclick="closeModal(this)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title">ABOUT</span>
+                <button class="modal-close" onclick="closeModal(this.closest('.modal-overlay'))">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="bio-text">
+                    Operations and customer support professional with 6+ years of experience across technical support, content moderation, healthcare scheduling, property management, customer retention, and logistics coordination. Proven track record supporting international clients with accurate documentation and adaptable problem-solving.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAPABILITIES MODAL -->
+    <div id="skillsModal" class="modal-overlay" onclick="closeModal(this)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title">CAPABILITIES</span>
+                <button class="modal-close" onclick="closeModal(this.closest('.modal-overlay'))">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="skills-container">
+                    <button class="skill-chip" onclick="showSkillModal('Customer Support')">Customer Support</button>
+                    <button class="skill-chip" onclick="showSkillModal('Technical Support')">Technical Support</button>
+                    <button class="skill-chip" onclick="showSkillModal('Email & Chat')">Email & Chat</button>
+                    <button class="skill-chip" onclick="showSkillModal('Phone Support')">Phone Support</button>
+                    <button class="skill-chip" onclick="showSkillModal('CRM Systems')">CRM Systems</button>
+                    <button class="skill-chip" onclick="showSkillModal('Scheduling')">Scheduling</button>
+                    <button class="skill-chip" onclick="showSkillModal('Property Management')">Property Management</button>
+                    <button class="skill-chip" onclick="showSkillModal('Logistics')">Logistics</button>
+                    <button class="skill-chip" onclick="showSkillModal('Lead Qualification')">Lead Qualification</button>
+                    <button class="skill-chip" onclick="showSkillModal('Content Moderation')">Content Moderation</button>
+                    <button class="skill-chip" onclick="showSkillModal('Google Workspace')">Google Workspace</button>
+                    <button class="skill-chip" onclick="showSkillModal('MS Office')">MS Office</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDUCATION MODAL -->
+    <div id="educationModal" class="modal-overlay" onclick="closeModal(this)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title">EDUCATION</span>
+                <button class="modal-close" onclick="closeModal(this.closest('.modal-overlay'))">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="edu-card">
+                    <div>
+                        <div class="edu-title">St. John Paul II College of Davao</div>
+                        <div class="edu-loc">Davao City, Philippines</div>
+                    </div>
+                    <i class="fa-solid fa-graduation-cap" style="color: var(--muted); font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Capability Sub-Modal -->
+    <div id="skillDetailModal" class="modal-overlay" style="z-index: 1100;" onclick="closeModal(this)">
+        <div class="modal-card" style="max-width: 440px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title" id="modalSkillName">Capability</span>
+                <button class="modal-close" onclick="closeModal(this.closest('.modal-overlay'))">&times;</button>
+            </div>
+            <div class="modal-body" id="modalSkillDesc">
+                Description text...
+            </div>
+        </div>
+    </div>
+
+    <div id="toast">Copied email to clipboard!</div>
+
+    <script>
+        const slides = document.querySelectorAll('.bg-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 5000);
+
+        function openCategoryModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalElement) {
+            if (modalElement) {
+                modalElement.classList.remove('active');
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }
+        });
+
+        const skillDescriptions = {
+            "Customer Support": "Providing empathetic, quick, and accurate assistance to resolve user inquiries across digital and voice channels.",
+            "Technical Support": "Troubleshooting end-user software or hardware issues through structured step-by-step problem determination and detailed ticketing logs.",
+            "Email & Chat": "Managing fast-paced written communication channels with clarity, proper tone, and efficient ticket resolution rates.",
+            "Phone Support": "Handling high-volume inbound and outbound phone queues with calm professionalism, clear verbal articulation, and detailed call logs.",
+            "CRM Systems": "Utilizing customer relationship management platforms to maintain customer data accuracy, track support histories, and update shift records.",
+            "Scheduling": "Managing complex appointments, coordinating shift coverages, and resolving scheduling conflicts in fast-paced environments like healthcare staffing.",
+            "Property Management": "Handling tenant lifecycles, maintenance requests, lease coordination, payment tracking, and customer retention strategies.",
+            "Logistics": "Coordinating freight/moving logistics, performing virtual volumetric calculations, and routing operational instructions to field teams and brokers.",
+            "Lead Qualification": "Outbound outreach to screen, verify, and pass warm leads to sales teams while keeping CRM profiles current.",
+            "Content Moderation": "Reviewing user-generated media and text to enforce trust and safety standards while maintaining high accuracy and throughput.",
+            "Google Workspace": "Proficiency with Docs, Sheets, Drive, Gmail, and Calendar to collaborate asynchronously and organize cross-functional operations.",
+            "MS Office": "Utilizing Word, Excel, and Outlook for data entry, documentation management, and formal client reporting."
+        };
+
+        function showSkillModal(skill) {
+            const modal = document.getElementById('skillDetailModal');
+            document.getElementById('modalSkillName').textContent = skill;
+            document.getElementById('modalSkillDesc').textContent = skillDescriptions[skill] || "Professional capability demonstrated throughout prior client roles.";
+            modal.classList.add('active');
+        }
+
+        function toggleAcc(header) {
+            header.parentElement.classList.toggle('open');
+        }
+
+        function filterExp(category, btn) {
+            document.querySelectorAll('.filters-container .filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                const itemCat = item.getAttribute('data-cat');
+                if (category === 'all' || itemCat.includes(category)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        function copyEmail() {
+            navigator.clipboard.writeText('clrkenao@gmail.com').then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2200);
+            });
+        }
+    </script>
+</body>
+</html>
