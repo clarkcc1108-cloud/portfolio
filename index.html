@@ -445,6 +445,7 @@
             padding: 16px 20px;
             text-decoration: none;
             transition: all 0.25s ease;
+            position: relative; /* Context for chatbox bubble positioning */
         }
 
         .link-card:hover {
@@ -491,6 +492,65 @@
         .link-card:hover .link-arrow {
             color: var(--fg);
             transform: translate(2px, -2px);
+        }
+
+        /* Hover Chatbox Bubble with Larger Image Layout */
+        .link-card .chatbox-bubble {
+            position: absolute;
+            bottom: calc(100% + 14px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px) scale(0.95);
+            background: rgba(20, 20, 23, 0.96);
+            border: 1px solid var(--border-hover);
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 210px;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 20;
+        }
+
+        /* Chatbox Arrow Pointer */
+        .link-card .chatbox-bubble::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--border-hover) transparent transparent transparent;
+        }
+
+        .link-card .chatbox-img {
+            width: 100%;
+            height: 140px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+        }
+
+        .link-card .chatbox-text {
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+            color: var(--fg);
+            line-height: 1.3;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .link-card:hover .chatbox-bubble {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
         }
 
         /* Modal Overlay & Card Styles */
@@ -856,7 +916,7 @@
                 </div>
 
                 <h1 class="hero-headline">Driving operations & seamless customer support.</h1>
-                <p class="hero-sub">Specialized in technical troubleshooting, property management, scheduling, and high-volume operations for fast-growing global teams.</p>
+                <p class="hero-sub">Specialized in customer support, property management, scheduling, and high-volume operations for fast-growing global teams.</p>
                 
                 <!-- Bottom Highlights Bar -->
                 <div class="hero-stats">
@@ -946,6 +1006,11 @@
                         <span class="link-name">OnlineJobs</span>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+                    <!-- Chatbox Bubble with Larger Image -->
+                    <div class="chatbox-bubble">
+                        <img src="olj.png" alt="Profile" class="chatbox-img">
+                        <div class="chatbox-text">View OnlineJobs Profile</div>
+                    </div>
                 </a>
 
                 <a href="https://www.linkedin.com/in/christian-clark-enao-1b3943250/" target="_blank" rel="noopener noreferrer" class="link-card">
@@ -954,6 +1019,11 @@
                         <span class="link-name">LinkedIn</span>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+                    <!-- Chatbox Bubble with Larger Image -->
+                    <div class="chatbox-bubble">
+                        <img src="Linkedin.png" alt="Profile" class="chatbox-img">
+                        <div class="chatbox-text">Connect on LinkedIn</div>
+                    </div>
                 </a>
 
                 <a href="https://www.upwork.com/freelancers/~01c1105d25a961dda6" target="_blank" rel="noopener noreferrer" class="link-card">
@@ -962,6 +1032,11 @@
                         <span class="link-name">Upwork</span>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+                    <!-- Chatbox Bubble with Larger Image -->
+                    <div class="chatbox-bubble">
+                        <img src="upwork.png" alt="Profile" class="chatbox-img">
+                        <div class="chatbox-text">Hire on Upwork</div>
+                    </div>
                 </a>
             </div>
         </div>
