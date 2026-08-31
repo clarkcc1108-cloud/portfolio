@@ -494,7 +494,7 @@
             transform: translate(2px, -2px);
         }
 
-        /* Hover Chatbox Bubble with Larger Image Layout */
+        /* Hover Chatbox Bubble with Text Only (Images Removed) */
         .link-card .chatbox-bubble {
             position: absolute;
             bottom: calc(100% + 14px);
@@ -502,13 +502,14 @@
             transform: translateX(-50%) translateY(6px) scale(0.95);
             background: rgba(20, 20, 23, 0.96);
             border: 1px solid var(--border-hover);
-            border-radius: 14px;
-            padding: 12px;
+            border-radius: 10px;
+            padding: 8px 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            width: 210px;
+            gap: 6px;
+            width: max-content;
+            max-width: 220px;
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(12px);
             opacity: 0;
@@ -528,14 +529,6 @@
             border-width: 6px;
             border-style: solid;
             border-color: var(--border-hover) transparent transparent transparent;
-        }
-
-        .link-card .chatbox-img {
-            width: 100%;
-            height: 140px;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 1px solid var(--border);
         }
 
         .link-card .chatbox-text {
@@ -995,7 +988,7 @@
                 <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </div>
 
-            <!-- NEW WEBSITES BUTTON -->
+            <!-- WEBSITES BUTTON -->
             <div class="category-box" onclick="openCategoryModal('websitesModal')">
                 <div class="category-box-info">
                     <span class="section-title">WEBSITES</span>
@@ -1015,9 +1008,9 @@
                         <span class="link-name">OnlineJobs</span>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    <!-- Chatbox Bubble with Larger Image -->
+                    <!-- Chatbox Bubble with Image -->
                     <div class="chatbox-bubble">
-                        <img src="olj.png" alt="Profile" class="chatbox-img">
+                        <img src="olj.png" alt="Profile" class="chatbox-img" style="width: 100%; height: 140px; border-radius: 10px; object-fit: cover; border: 1px solid var(--border);">
                         <div class="chatbox-text">View OnlineJobs Profile</div>
                     </div>
                 </a>
@@ -1028,9 +1021,9 @@
                         <span class="link-name">LinkedIn</span>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    <!-- Chatbox Bubble with Larger Image -->
+                    <!-- Chatbox Bubble with Image -->
                     <div class="chatbox-bubble">
-                        <img src="Linkedin.png" alt="Profile" class="chatbox-img">
+                        <img src="Linkedin.png" alt="Profile" class="chatbox-img" style="width: 100%; height: 140px; border-radius: 10px; object-fit: cover; border: 1px solid var(--border);">
                         <div class="chatbox-text">Connect on LinkedIn</div>
                     </div>
                 </a>
@@ -1041,9 +1034,9 @@
                         <span class="link-name">Upwork</span>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    <!-- Chatbox Bubble with Larger Image -->
+                    <!-- Chatbox Bubble with Image -->
                     <div class="chatbox-bubble">
-                        <img src="upwork.png" alt="Profile" class="chatbox-img">
+                        <img src="upwork.png" alt="Profile" class="chatbox-img" style="width: 100%; height: 140px; border-radius: 10px; object-fit: cover; border: 1px solid var(--border);">
                         <div class="chatbox-text">Hire on Upwork</div>
                     </div>
                 </a>
@@ -1304,19 +1297,18 @@
             <div class="modal-body">
                 <div class="links-grid" style="grid-template-columns: 1fr;">
                     
-                    <!-- Website 1 -->
-                    <a href="https://gg-five-nu.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <!-- Website 1: Property Management Website -->
+                    <a href="https://gg-five-nu.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card property-mgmt-card">
                         <div class="link-info">
                             <i class="fa-solid fa-globe link-icon"></i>
-                            <span class="link-name">GG Creation Project</span>
+                            <span class="link-name">Property Management Website</span>
                         </div>
                         <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
                         <div class="chatbox-bubble">
-                            <img src="profile.png" alt="Preview" class="chatbox-img">
-                            <div class="chatbox-text">Visit GG Website</div>
+                            <div class="chatbox-text">Visit Website</div>
                         </div>
                     </a>
-
+           
                     <!-- Website 2 -->
                     <a href="https://bonethugsburgers.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card">
                         <div class="link-info">
@@ -1325,12 +1317,11 @@
                         </div>
                         <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
                         <div class="chatbox-bubble">
-                            <img src="profile.png" alt="Preview" class="chatbox-img">
-                            <div class="chatbox-text">Visit Bone Thugs Burgers</div>
+                            <div class="chatbox-text">Visit Website</div>
                         </div>
                     </a>
 
-                    <!-- Website 4 -->
+                    <!-- Website 3 -->
                     <a href="https://san-carlos-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card">
                         <div class="link-info">
                             <i class="fa-solid fa-code link-icon"></i>
@@ -1338,11 +1329,9 @@
                         </div>
                         <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
                         <div class="chatbox-bubble">
-                            <img src="profile.png" alt="Preview" class="chatbox-img">
-                            <div class="chatbox-text">Visit San Carlos One</div>
+                            <div class="chatbox-text">Visit Website</div>
                         </div>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -1412,6 +1401,7 @@
             const modal = document.getElementById('skillDetailModal');
             document.getElementById('modalSkillName').textContent = skill;
             document.getElementById('modalSkillDesc').textContent = skillDescriptions[skill] || "Professional capability demonstrated throughout prior client roles.";
+            modal.classList.add('classList');
             modal.classList.add('active');
         }
 
